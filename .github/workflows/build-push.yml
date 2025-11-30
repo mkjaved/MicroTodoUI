@@ -42,5 +42,4 @@ jobs:
 
       - name: Push Docker Image to ACR
         run: |
-          docker push $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG
-          docker push $ACR_LOGIN_SERVER/$IMAGE_NAME:latest
+          docker push $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG         
