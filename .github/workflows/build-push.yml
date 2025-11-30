@@ -13,7 +13,7 @@ jobs:
 
     env:
       IMAGE_NAME: todo-ui
-      IMAGE_TAG: v4
+      IMAGE_TAG: ${{ github.run_id }}
       ACR_NAME: acrpilutodoappprod01
       ACR_LOGIN_SERVER: acrpilutodoappprod01.azurecr.io
 
@@ -38,8 +38,10 @@ jobs:
 
       - name: Tag Docker Image for ACR
         run: |
-          docker tag $IMAGE_NAME:$IMAGE_TAG $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG
+          docker tag $IMAGE_NAME:$IMAGE_TAG $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG \
+                     $ACR_LOGIN_SERVER/$IMAGE_NAME:latest
 
       - name: Push Docker Image to ACR
         run: |
           docker push $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG
+          docker push $ACR_LOGIN_SERVER/$IMAGE_NAME:latest
